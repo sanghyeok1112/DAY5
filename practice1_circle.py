@@ -1,4 +1,5 @@
 import pico2d
+import math
 
 pico2d.open_canvas()
 
@@ -7,18 +8,14 @@ character = pico2d.load_image('character.png')
 
 x = 0
 y = 90
-while 1:
+angle = 0
+while angle < 2 * math.pi:
     pico2d.clear_canvas_now()
     grass.draw_now(400, 30)
     character.draw_now(x, y)
-    if x < 750 and y == 90:
-        x += 2
-    elif x >= 750 and y < 550:
-        y += 2
-    elif x > 0 and y == 550:
-        x -= 2
-    elif x <= 50 and y > 90:
-        y -= 2
+    angle += 0.1
+    x = 400 + 200 * math.cos(angle)
+    y = 300 + 200 * math.sin(angle)
     pico2d.delay(0.01)
 
 pico2d.clear_canvas()
